@@ -15,7 +15,7 @@ import workRouter from "./api/work/index.js";
 
 dotenv.config();
 const server = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 
 server.use(cors());
 server.use(express.json());
