@@ -72,7 +72,7 @@ workRouter.put("/:workoutId", async (req, res, next) => {
 
 // DELETE
 
-workRouter.delete("workoutId", async (req, res, next) => {
+workRouter.delete("/:workoutId", async (req, res, next) => {
   try {
     const deletedWorkout = await WorkModel.findByIdAndDelete(
       req.params.workoutId
