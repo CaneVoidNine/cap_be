@@ -7,7 +7,12 @@ const usersSchema = new Schema(
   {
     name: { type: String, required: true },
     lastName: { type: String, required: true },
-    avatar: { type: String, required: false },
+    avatar: {
+      type: String,
+      required: false,
+      default:
+        "https://i.pinimg.com/736x/b7/21/57/b72157473ae510c74e7a96ccb8bd0e38.jpg",
+    },
     email: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["Admin", "User"], default: "User" },
