@@ -10,6 +10,9 @@ workRouter.post("/", async (req, res, next) => {
   try {
     const newWork = new WorkModel(req.body);
     const { _id } = await newWork.save();
+    if ({ _id }) {
+      res.status(200).send();
+    }
   } catch (error) {
     next(error);
   }
@@ -19,7 +22,11 @@ workRouter.post("/", async (req, res, next) => {
 
 workRouter.get("/", async (req, res, next) => {
   try {
-    const workouts = await WorkModel.find();
+    const workouts = await WorkModel.find().populate({
+      path: "exercises",
+      model: "Exercises",
+      select: "title",
+    });
     res.send(workouts);
   } catch (error) {
     next(error);

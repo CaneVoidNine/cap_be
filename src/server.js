@@ -12,6 +12,7 @@ import usersRouter from "./api/users/index.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import workRouter from "./api/work/index.js";
+import exercisesRouter from "./api/exercises/index.js";
 
 dotenv.config();
 const server = express();
@@ -22,6 +23,7 @@ server.use(express.json());
 
 server.use("/users", usersRouter);
 server.use("/workouts", workRouter);
+server.use("/exercises", exercisesRouter);
 
 server.use(badRequestHandler);
 server.use(unauthorizedHandler);

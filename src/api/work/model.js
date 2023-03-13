@@ -14,7 +14,9 @@ const workSchema = new Schema(
     },
     tag: { type: String, required: false },
     time: { type: Number, required: false },
-    exercises: { type: Array, required: true },
+    exercises: [
+      { type: Schema.Types.ObjectId, ref: "Exercises", required: false },
+    ],
   },
   {
     timestamps: true,
