@@ -73,6 +73,10 @@ usersRouter.put("/me", JWTAuthMiddleware, async (req, res, next) => {
   }
 });
 
+// usersRouter.post("/me/image", async (req,res,next) => {
+//   const
+// })
+
 usersRouter.delete("/me", JWTAuthMiddleware, async (req, res, next) => {
   try {
     const deletedUser = await userModel.findByIdAndDelete(req.user._id);
