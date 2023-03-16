@@ -14,6 +14,7 @@ workRouter.post("/", cloudinaryUpload, async (req, res, next) => {
       title: req.body.title,
       image: req.file.path,
       info: req.body.info,
+      exercises: req.body.exercises,
     });
     const { _id } = await newWork.save();
     if ({ _id }) {
@@ -43,7 +44,11 @@ workRouter.get("/", async (req, res, next) => {
 
 workRouter.get("/:workoutId", async (req, res, next) => {
   try {
-    const workout = await WorkModel.findById(req.params.workoutId);
+    const workout = await WorkModel.findById(req.params.workoutId).populate({
+      path: "exercises",
+      model: "Exercises",
+      select: "title",
+    });
     if (workout) {
       res.send(workout);
     } else {
