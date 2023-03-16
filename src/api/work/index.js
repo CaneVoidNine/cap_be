@@ -1,14 +1,20 @@
 import express from "express";
 import WorkModel from "./model.js";
 import createHttpError from "http-errors";
+import { cloudinaryUpload } from "../utils/upload.js";
 
 const workRouter = express.Router();
 
 // POST
 
-workRouter.post("/", async (req, res, next) => {
+workRouter.post("/", cloudinaryUpload, async (req, res, next) => {
   try {
-    const newWork = new WorkModel(req.body);
+    console.log(req.body);
+    const newWork = new WorkModel({
+      title: req.body.title,
+      image: req.file.path,
+      info: req.body.info,
+    });
     const { _id } = await newWork.save();
     if ({ _id }) {
       res.status(200).send();

@@ -27,7 +27,7 @@ export const cloudinaryUpload = multer({
       allowedFormats: ["jpeg", "png", "jpg"],
     },
   }),
-}).single("cover");
+}).single("image");
 
 const __filename = fileURLToPath(import.meta.url);
 
