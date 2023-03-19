@@ -30,14 +30,14 @@ exercisesRouter.get("/", async (req, res, next) => {
 
 exercisesRouter.get("/:exercisesId", async (req, res, next) => {
   try {
-    const exercises = await exercisesModel.findById(req.params.exercisesoutId);
+    const exercises = await exercisesModel.findById(req.params.exercisesId);
     if (exercises) {
       res.send(exercises);
     } else {
       next(
         createHttpError(
           404,
-          `exercisesout with id ${req.params.exercisesId} doesnt exist!`
+          `exercise with id ${req.params.exercisesId} doesnt exist!`
         )
       );
     }

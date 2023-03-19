@@ -16,6 +16,7 @@ const usersSchema = new Schema(
     email: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["Admin", "User"], default: "User" },
+    // likes: [{ type: Schema.Types.ObjectId, ref: "Workouts", required: false }],
   },
   { timestamps: true }
 );
