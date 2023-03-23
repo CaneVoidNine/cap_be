@@ -15,7 +15,11 @@ const workSchema = new Schema(
     tag: { type: String, required: false },
     time: { type: Number, required: false },
     exercises: [
-      { type: Schema.Types.ObjectId, ref: "Exercises", required: false },
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Exercises",
+        required: false,
+      },
     ],
   },
   {

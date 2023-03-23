@@ -32,7 +32,7 @@ workRouter.get("/", async (req, res, next) => {
     const workouts = await WorkModel.find().populate({
       path: "exercises",
       model: "Exercises",
-      select: "title",
+      select: "title info image sets time",
     });
     res.send(workouts);
   } catch (error) {
@@ -47,7 +47,7 @@ workRouter.get("/:workoutId", async (req, res, next) => {
     const workout = await WorkModel.findById(req.params.workoutId).populate({
       path: "exercises",
       model: "Exercises",
-      select: "title",
+      select: "title info image time sets",
     });
     if (workout) {
       res.send(workout);
