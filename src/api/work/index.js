@@ -14,7 +14,7 @@ workRouter.post("/", cloudinaryUpload, async (req, res, next) => {
       title: req.body.title,
       image: req.file.path,
       info: req.body.info,
-      exercises: req.body.exercises,
+      exercises: JSON.parse(req.body.exercises),
     });
     const { _id } = await newWork.save();
     if ({ _id }) {
