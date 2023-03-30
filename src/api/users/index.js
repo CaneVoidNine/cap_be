@@ -94,6 +94,28 @@ usersRouter.put(
     }
   }
 );
+usersRouter.delete(
+  "/me/likes/:workoutId",
+  JWTAuthMiddleware,
+  async (req, res, next) => {
+    try {
+      const updatedUser = await userModel.findByIdAndUpdate(
+        req.user._id,
+        { $pull: { likes: req.params.workoutId } },
+        { new: true }
+      );
+      if (updatedUser) {
+        res.send(updatedUser);
+      } else {
+        next(
+          createHttpError(404, `User with id ${req.user._id} does not exist!`)
+        );
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 // usersRouter.post("/me/image", async (req,res,next) => {
 //   const
 // })
