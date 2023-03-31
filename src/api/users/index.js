@@ -53,7 +53,24 @@ usersRouter.get("/me", JWTAuthMiddleware, async (req, res, next) => {
     next(error);
   }
 });
-
+usersRouter.get("/me/myExe", JWTAuthMiddleware, async (req, res, next) => {
+  try {
+    const user = await userModel.findById(req.user._id).populate({
+      path: "likes",
+      model: "Workouts",
+      select: "title",
+    });
+    if (user) {
+      res.send(user);
+    } else {
+      next(
+        createHttpError(404, `user with id ${req.user._id} does not exist!`)
+      );
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 usersRouter.put("/me", JWTAuthMiddleware, async (req, res, next) => {
   try {
     const updatedUser = await userModel.findByIdAndUpdate(
